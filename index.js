@@ -1,7 +1,4 @@
-function canJump(nums) {
-  let lastPos = nums.length - 1;
-  for (let i = nums.length - 2; i >= 0; i--) {
-    if (i + nums[i] >= lastPos) lastPos = i;
-  }
-  return lastPos === 0;
-}
+const dropRightWhile = (arr, func) => {
+  while (arr.length > 0 && !func(arr[arr.length - 1])) arr = arr.slice(0, -1);
+  return arr;
+};
