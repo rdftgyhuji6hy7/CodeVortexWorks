@@ -1,15 +1,10 @@
-const selectionSortRecursive = (arr, start = 0) => {
-  if (start >= arr.length - 1) {
-    return arr;
+function wiggleSort(nums) {
+  nums.sort((a, b) => a - b);
+  const median = Math.floor((nums.length + 1) / 2);
+  const left = nums.slice(0, median);
+  const right = nums.slice(median);
+  for (let i = 0; i < nums.length; i++) {
+    if (i % 2 === 0) nums[i] = left.pop();
+    else nums[i] = right.pop();
   }
-  let minIndex = start;
-  for (let i = start + 1; i < arr.length; i++) {
-    if (arr[i] < arr[minIndex]) {
-      minIndex = i;
-    }
-  }
-  if (minIndex !== start) {
-    [arr[start], arr[minIndex]] = [arr[minIndex], arr[start]];
-  }
-  return selectionSortRecursive(arr, start + 1);
-};
+}
