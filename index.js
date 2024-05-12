@@ -1,10 +1,13 @@
-function wiggleSort(nums) {
-  nums.sort((a, b) => a - b);
-  const median = Math.floor((nums.length + 1) / 2);
-  const left = nums.slice(0, median);
-  const right = nums.slice(median);
-  for (let i = 0; i < nums.length; i++) {
-    if (i % 2 === 0) nums[i] = left.pop();
-    else nums[i] = right.pop();
+function searchMatrix(matrix, target) {
+  if (matrix.length === 0 || matrix[0].length === 0) return false;
+  const rows = matrix.length;
+  const cols = matrix[0].length;
+  let row = 0;
+  let col = cols - 1;
+  while (row < rows && col >= 0) {
+    if (matrix[row][col] === target) return true;
+    else if (matrix[row][col] < target) row++;
+    else col--;
   }
+  return false;
 }
