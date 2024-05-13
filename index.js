@@ -1,13 +1,10 @@
-function searchMatrix(matrix, target) {
-  if (matrix.length === 0 || matrix[0].length === 0) return false;
-  const rows = matrix.length;
-  const cols = matrix[0].length;
-  let row = 0;
-  let col = cols - 1;
-  while (row < rows && col >= 0) {
-    if (matrix[row][col] === target) return true;
-    else if (matrix[row][col] < target) row++;
-    else col--;
+function coinChange(coins, amount) {
+  const dp = new Array(amount + 1).fill(Infinity);
+  dp[0] = 0;
+  for (const coin of coins) {
+    for (let i = coin; i <= amount; i++) {
+      dp[i] = Math.min(dp[i], dp[i - coin] + 1);
+    }
   }
-  return false;
+  return dp[amount] === Infinity ? -1 : dp[amount];
 }
